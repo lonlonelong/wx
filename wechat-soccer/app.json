@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/article/article"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#c01e2f",
+    "navigationBarTitleText": "虎扑足球",
+    "navigationBarTextStyle": "white"
+  }
+}

@@ -1,0 +1,38 @@
+<!--index.wxml-->
+<import src="../../template/loading.wxml"/>
+
+<template name="list">
+    <view class="list-item" data-nid="{{nid}}" bindtap="linkTo">
+      <view class="text">
+        <text class="title">{{title}}</text>
+        <view class="text-bottom">
+          <text class="comments">{{replies}}评论</text><text class="top" wx:if="{{topType}}">{{topType}}</text>
+        </view>
+      </view>
+      <image src="{{img}}" class="news-pic"></image>
+    </view>
+</template>
+
+<view class="page">
+  <view class="tab">
+    <block wx:for="{{tabs}}" wx:key="item">
+      <view class="tab-item {{tabIndex == item.index ? 'active' : ''}}" data-tab="{{item.index}}" bindtap="tabToggle">{{item.name}}</view>
+    </block>
+  </view>
+  <view class="container" wx:if="{{tabIndex == 0}}">
+      <scroll-view class="list" scroll-top="{{fifa_scrollTop}}" bindscrolltolower="loadMore" bindscroll="scroll" bindscrolltoupper="refresh" scroll-y="true" style="height:{{scrollHeight}}px;">
+        <view class="line"></view>
+        <template is="loading" wx:if="{{loadingTop}}" />
+        <template is="list" wx:for="{{fifa}}" wx:key="item" data="{{...item}}" />
+        <template is="loading" wx:if="{{loadingBottom}}" />
+      </scroll-view>
+  </view>
+  <view class="container" wx:esif="{{tabIndex == 1}}">
+    <scroll-view class="list" scroll-top="{{csl_scrollTop}}" bindscrolltolower="loadMore" bindscroll="scroll" bindscrolltoupper="refresh" scroll-y="true" style="height:{{scrollHeight}}px;">
+      <view class="line"></view>
+      <template is="loading" wx:if="{{loadingTop}}" />
+      <template is="list" wx:for="{{csl}}" wx:key="item" data="{{...item}}" />
+      <template is="loading" wx:if="{{loadingBottom}}" />
+    </scroll-view>
+  </view>
+</view>
